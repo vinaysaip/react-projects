@@ -1,9 +1,9 @@
 const RestaurantCard = (props)=> {
     const {resData} = props;
-    const {name, cuisines, costForTwo, rating,locality,mediaFiles} = resData;
+    const {name, cuisines, costForTwo, avgRating,locality,cloudinaryImageId} = resData;
     return(<div>
       <div className="restaurant-card">
-        <img className="restaurant-img" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/" +mediaFiles[0].url } alt="Restaurant"></img>
+        <img className="restaurant-img" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/" +cloudinaryImageId } alt="Restaurant"></img>
         <h3 className="restaurant-name">{name}</h3>
         <div className="restaurant-details">
         <p className="restaurant-description">{cuisines.join(' .')}</p>
@@ -11,7 +11,7 @@ const RestaurantCard = (props)=> {
         </div>
         <div className="restaurant-details">
         <p className="restaurant-description">{costForTwo}</p>
-        <p className="restaurant-description">{rating.value}</p>
+        <p className="restaurant-description">{avgRating}</p>
         </div>
       </div>
     </div>)

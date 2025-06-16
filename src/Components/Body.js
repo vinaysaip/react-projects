@@ -1,6 +1,6 @@
 import RestaurantCard from "./ReataurantCard";
-import restaurentData from "../assets/data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 const SearchBar = ({ searchText, onSearchChange}) => {
  
   handleSearchChange = (e) => {
@@ -15,22 +15,32 @@ const SearchBar = ({ searchText, onSearchChange}) => {
 
 const BodyComponent = ()=>{
   const [searchText, setSearchText] = useState("");
-  const [filteredData, setFilteredData] = useState(restaurentData);
+  const [filteredData, setFilteredData] = useState([]);
+  const fetchData = async () => {
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4700319&lng=78.3534174&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    const data_json = await data.json();
+    const restaurentData = data_json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+    console.log("Fetched Data:", restaurentData);
+    setFilteredData(restaurentData);
+  };
+  useEffect(fetchData,[]);
+  
   const handleSearchInputChange = (newSearchText) => {
     setSearchText(newSearchText);
     console.log("Search Text in BodyComponent:", newSearchText);
-    const newFilteredData = restaurentData.filter(restaurant => 
+    const newFilteredData = filteredData.filter(restaurant => 
       restaurant.info.name.toLowerCase().includes(newSearchText.toLowerCase())
     );
     setFilteredData(newFilteredData);
   };
+      
     return(<div className="body-container">
       
       <div className="search-bar"><SearchBar searchText={searchText} onSearchChange={handleSearchInputChange} /></div>
       <div className="restaurant-list">
-      {filteredData.map((restaurant) => (
+      { filteredData.length === 0 ? (<Shimmer/>):(filteredData.map((restaurant) => (
         <RestaurantCard key={restaurant.info.id} resData = {restaurant.info}/>
-      ))}
+      )))}
       
       </div>
     </div>);
