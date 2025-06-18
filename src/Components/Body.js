@@ -25,7 +25,9 @@ const BodyComponent = ()=>{
     setRestaurantData(restaurentData);
     setFilteredData(restaurentData);
   };
-  useEffect(fetchData,[]);
+  useEffect(() => {
+    fetchData();
+  },[]);
   
   const handleSearchInputChange = (newSearchText) => {
     setSearchText(newSearchText);

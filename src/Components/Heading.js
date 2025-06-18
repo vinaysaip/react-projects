@@ -11,7 +11,7 @@ const LogoComponent = () => (
   return <div className="pr-3">
     <ul className="nav-items
   ">
-      <li className="nav-item">Home</li>
+      <li className="nav-item"><Link to="/">Home</Link></li>
       <li className="nav-item"><Link to="/aboutUs">About</Link></li>
       <li className="nav-item"><Link to="/contactUs">Contact</Link></li>
       <li className="nav-item">Cart</li>
