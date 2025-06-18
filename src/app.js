@@ -1,14 +1,42 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import HeadingComponent from "./Components/Heading";
 import BodyComponent from "./Components/Body";
 import FooterComponent from "./Components/Footer";
-const AppContainer = () => (
-  <div className="app-container">
+import { createBrowserRouter,RouterProvider,Outlet } from "react-router";
+import AboutUs from "./Components/AboutUs";
+import ContactUs from "./Components/ContactUs";
+import ErrorComponet from "./Components/ErrorComponent";
+
+
+const AppContainer = () => {
+  return(<div className="app-container">
     <HeadingComponent />
-    <BodyComponent />
+    <Outlet />
     <FooterComponent />
-  </div>
-);
+  </div>)
+};
+
+
+const router = createBrowserRouter([{
+  path:"/",
+  Component:AppContainer,
+  children:[
+    {
+  path:"/",
+  Component:BodyComponent
+},
+    {
+  path:"/aboutUs",
+  Component:AboutUs
+},
+{
+  path:"/contactUs",
+  Component:ContactUs
+}
+  ],
+  errorElement:<ErrorComponet/>
+
+}
+])
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppContainer/>);
+root.render(<RouterProvider router={router}/>);

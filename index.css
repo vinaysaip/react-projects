@@ -99,6 +99,11 @@
     background-color: #f0f0f0;
     border-radius: 5px;
     animation: shimmer 1.5s infinite linear;
+    background-image: linear-gradient(to right, #f0f0f0 0%, #e0e0e0 20%, #f0f0f0 40%, #f0f0f0 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 300px;
+    display: inline-block;
+    position: relative;
 }
 
 .login-button{
@@ -109,4 +114,18 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -468px 0;
+    }
+    100% {
+        background-position: 468px 0;
+    }
+}
+.oops-img{
+    height: 300px;
+    width: auto;
+    border-radius: 5px;
 }

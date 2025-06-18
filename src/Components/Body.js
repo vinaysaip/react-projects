@@ -15,12 +15,14 @@ const SearchBar = ({ searchText, onSearchChange}) => {
 
 const BodyComponent = ()=>{
   const [searchText, setSearchText] = useState("");
+  const [restaurantData, setRestaurantData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const fetchData = async () => {
     const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4700319&lng=78.3534174&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
     const data_json = await data.json();
     const restaurentData = data_json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
     console.log("Fetched Data:", restaurentData);
+    setRestaurantData(restaurentData);
     setFilteredData(restaurentData);
   };
   useEffect(fetchData,[]);
@@ -28,7 +30,7 @@ const BodyComponent = ()=>{
   const handleSearchInputChange = (newSearchText) => {
     setSearchText(newSearchText);
     console.log("Search Text in BodyComponent:", newSearchText);
-    const newFilteredData = filteredData.filter(restaurant => 
+    const newFilteredData = restaurantData.filter(restaurant => 
       restaurant.info.name.toLowerCase().includes(newSearchText.toLowerCase())
     );
     setFilteredData(newFilteredData);

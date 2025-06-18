@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 
 const LogoComponent = () => (
     <div className="logo-container">
@@ -11,8 +12,8 @@ const LogoComponent = () => (
     <ul className="nav-items
   ">
       <li className="nav-item">Home</li>
-      <li className="nav-item">About</li>
-      <li className="nav-item">Contact</li>
+      <li className="nav-item"><Link to="/aboutUs">About</Link></li>
+      <li className="nav-item"><Link to="/contactUs">Contact</Link></li>
       <li className="nav-item">Cart</li>
       <button className="login-button" onClick={()=>{
         setBtnName(btnName === "Login" ? "Logout" : "Login");
