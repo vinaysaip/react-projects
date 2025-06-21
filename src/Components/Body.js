@@ -1,6 +1,7 @@
 import RestaurantCard from "./ReataurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router";
 const SearchBar = ({ searchText, onSearchChange}) => {
  
   handleSearchChange = (e) => {
@@ -38,16 +39,24 @@ const BodyComponent = ()=>{
     setFilteredData(newFilteredData);
   };
       
-    return(<div className="body-container">
-      
-      <div className="search-bar"><SearchBar searchText={searchText} onSearchChange={handleSearchInputChange} /></div>
-      <div className="restaurant-list">
-      { filteredData.length === 0 ? (<Shimmer/>):(filteredData.map((restaurant) => (
-        <RestaurantCard key={restaurant.info.id} resData = {restaurant.info}/>
-      )))}
-      
+    return (
+      <div className="body-container">
+        <div className="search-bar">
+          <SearchBar searchText={searchText} onSearchChange={handleSearchInputChange} />
+        </div>
+        <div className="restaurant-list">
+          {filteredData.length === 0 ? (
+            <Shimmer />
+          ) : (
+            filteredData.map((restaurant) => (
+              <Link to={`/restaurant/${restaurant.info.id}`} key={restaurant.info.id}>
+                <RestaurantCard resData={restaurant.info} />
+              </Link>
+            ))
+          )}
+        </div>
       </div>
-    </div>);
+    );
 }
 
   export default BodyComponent;

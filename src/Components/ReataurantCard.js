@@ -6,7 +6,7 @@ const RestaurantCard = (props)=> {
         <img className="restaurant-img" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/" +cloudinaryImageId } alt="Restaurant"></img>
         <h3 className="restaurant-name">{name}</h3>
         <div className="restaurant-details">
-        <p className="restaurant-description">{cuisines.join(' .')}</p>
+        <p className="restaurant-description">{cuisines.slice(0,2).join(' .')}</p>
         <p className="restaurant-description">{locality}</p>
         </div>
         <div className="restaurant-details">
