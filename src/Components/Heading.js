@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Link } from "react-router";
 
 const LogoComponent = () => (
-    <div className="logo-container">
+    <Link to={'/'}><div className="logo-container">
       <img className="logo-img"src={"https://png.pngtree.com/template/20191014/ourmid/pngtree-pin-food-delivery-map-location-delivery-logo-concept-image_318151.jpg"} alt="logo"></img>
-    </div>
+    </div></Link>
   );
   const NavItemsComponent = ()=>{
     const [btnName,setBtnName]  = useState("Login");

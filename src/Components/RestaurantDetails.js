@@ -28,7 +28,9 @@ const RestaurantDetails = () =>{
             <p>{avgRating} ({totalRatingsString}) {costForTwoMessage}</p>
             <p>{cuisines.join('.')}</p>
             <h3>Menu</h3>
+            <div className='menu-container'>
             <RestaurantMenu menuItems={menuData}/>
+            </div>
         </div>
     )
 }
