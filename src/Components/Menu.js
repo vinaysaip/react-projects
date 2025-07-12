@@ -52,10 +52,10 @@ const RestaurantMenu = ({ menuItems }) => {
         return (
           <div
             key={category?.card?.card?.title}
-            className="menu-category"
+            className="py-8 my-4 border border-gray-400 rounded-lg hover:border-2 font-extrabold"
             onClick={() => handleToggleCategory(category.card.card.title)}
           >
-            <h5 className="menu-header">
+            <h5 className="px-4 text-xl font-bold flex justify-between items-center">
               <div>
                 {category.card?.card?.itemCards ? (
                   <p>
@@ -68,7 +68,7 @@ const RestaurantMenu = ({ menuItems }) => {
                   <p>{category?.card?.card?.title}</p>
                 )}
               </div>
-              <div className="indicator">
+              <div className="pr-4">
                 {category.isOpen ? (
                   <img
                     height={16}
@@ -87,23 +87,33 @@ const RestaurantMenu = ({ menuItems }) => {
 
             {/* Conditionally render the menu items based on category.isOpen */}
             {category.isOpen && (
-              <div className="menu-items">
+              <div className="p-4 m-4 text-lg font-semibold ">
                 {uniqueItems.length > 0 ? (
                   uniqueItems.map((item) => {
                     const info = item?.dish?.info || item?.card?.info;
                     return (
-                      <div className="item-info" key={info?.id}>
-                        <div className="item-description">
-                          <h4 className="item-name">{info?.name}</h4>
+                      <div
+                        className=" py-4 flex flex-wrap justify-between items-center border-b border-b-gray-300"
+                        key={info?.id}
+                      >
+                        <div className="flex flex-col">
+                          <h4 className="">{info?.name}</h4>
                           {info?.price ? (
-                            <p>{"Rs." + info?.price / 100}</p>
+                            <p className="text-[15px] font-medium">
+                              {"Rs." + info?.price / 100}
+                            </p>
                           ) : (
-                            <p>{"Rs." + info?.defaultPrice / 100}</p>
+                            <p className="text-[15px] font-medium">
+                              {"Rs." + info?.defaultPrice / 100}
+                            </p>
                           )}
-                          <p>{info?.description}</p>
+                          <p className="text-[15px] font-medium text-gray-500">
+                            {info?.description}
+                          </p>
                         </div>
-                        <div className="menu-item-img">
+                        <div className="h-30 w-40 pr-4">
                           <img
+                            className="h-full w-full rounded-lg"
                             src={
                               "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" +
                               info?.imageId
