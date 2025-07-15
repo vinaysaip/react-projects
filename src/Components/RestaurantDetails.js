@@ -25,10 +25,10 @@ const RestaurantDetails = () => {
         <p className="text-blue-500 py-2">Back To Home</p>
       </Link>
       <h2 className="text-2xl font-bold">{name}</h2>
-      <p className="text-xl font-semibold py-2">
-        {avgRating} ({totalRatingsString})
+      <p className="text-md font-semibold py-2">
+        {avgRating + "⭐"} ({totalRatingsString})
       </p>
-      <p className="text-lg font-semibold">{costForTwoMessage}</p>
+      <p className="text-md font-semibold">{costForTwoMessage}</p>
       <p className="text-sm font-medium text-gray-500 py-2">
         {cuisines.join(".")}
       </p>

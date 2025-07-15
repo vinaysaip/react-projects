@@ -8,6 +8,7 @@ import ContactUs from "./Components/ContactUs";
 import ErrorComponet from "./Components/ErrorComponent";
 import RestaurantDetails from "./Components/RestaurantDetails";
 import useOnlineStatus from "./utils/useOnlineStatus";
+import noInternet from "./utils/images/internet.png";
 
 const AppContainer = () => {
   const onlineStatus = useOnlineStatus();
@@ -17,9 +18,14 @@ const AppContainer = () => {
       {onlineStatus ? (
         <Outlet />
       ) : (
-        <div className="offline-message">
-          <h1>Looks like you are offline!!</h1>
-          <h3>Please check your Intenet Connection</h3>
+        <div className="p-4 m-4 flex flex-col items-center">
+          <img className="w-50 h-50" src={noInternet} alt="no internet" />
+          <h1 className="text-2xl font-bold pt-8">
+            Looks like you are offline!!
+          </h1>
+          <h3 className="pt-4 text-xl font-semibold">
+            Please check your Intenet Connection
+          </h3>
         </div>
       )}
       <FooterComponent />

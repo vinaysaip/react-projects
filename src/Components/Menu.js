@@ -96,7 +96,7 @@ const RestaurantMenu = ({ menuItems }) => {
                         className=" py-4 flex flex-wrap justify-between items-center border-b border-b-gray-300"
                         key={info?.id}
                       >
-                        <div className="flex flex-col">
+                        <div className="flex flex-col w-4/5 p-2">
                           <h4 className="">{info?.name}</h4>
                           {info?.price ? (
                             <p className="text-[15px] font-medium">
@@ -107,13 +107,13 @@ const RestaurantMenu = ({ menuItems }) => {
                               {"Rs." + info?.defaultPrice / 100}
                             </p>
                           )}
-                          <p className="text-[15px] font-medium text-gray-500">
+                          <p className="text-[12px] font-medium text-gray-500">
                             {info?.description}
                           </p>
                         </div>
-                        <div className="h-30 w-40 pr-4">
+                        <div className="h-30 pr-4 w-1/5">
                           <img
-                            className="h-full w-full rounded-lg"
+                            className="h-full w-40 rounded-lg"
                             src={
                               "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" +
                               info?.imageId
