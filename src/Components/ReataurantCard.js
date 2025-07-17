@@ -30,4 +30,23 @@ const RestaurantCard = (props) => {
     </div>
   );
 };
+export const enhancedCard = (RestaurantCard) => {
+  return (props) => {
+    const { resData } = props;
+    const { aggregatedDiscountInfoV3 } = resData;
+    const header =
+      aggregatedDiscountInfoV3.header +
+      " " +
+      aggregatedDiscountInfoV3.subHeader;
+
+    return (
+      <div>
+        <label className="absolute text-white font-bold bg-amber-600 p-2 m-2 rounded-lg">
+          {header}
+        </label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};
 export default RestaurantCard;
