@@ -1,4 +1,4 @@
-import RestaurantCard from "./ReataurantCard";
+import RestaurantCard, { enhancedCard } from "./ReataurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
@@ -26,6 +26,7 @@ const BodyComponent = () => {
   const [searchText, setSearchText] = useState("");
   const [restaurantData, setRestaurantData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
+  const RestaurantCardWithBanner = enhancedCard(RestaurantCard);
   const fetchData = async () => {
     const data = await fetch(restaurantsURL);
     const data_json = await data.json();
@@ -66,7 +67,7 @@ const BodyComponent = () => {
               to={`/restaurant/${restaurant.info.id}`}
               key={restaurant.info.id}
             >
-              <RestaurantCard resData={restaurant.info} />
+              <RestaurantCardWithBanner resData={restaurant.info} />
             </Link>
           ))
         )}
