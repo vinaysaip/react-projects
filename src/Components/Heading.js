@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router";
 import { companyLogoUrl } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { userLoginDetails } from "../utils/uesrLoginDetailsContext";
 
 const LogoComponent = () => (
   <Link to={"/"}>
@@ -13,6 +14,9 @@ const LogoComponent = () => (
 const NavItemsComponent = () => {
   const onLineStatus = useOnlineStatus();
   const [btnName, setBtnName] = useState("Login");
+
+  const { userData, setUserData } = useContext(userLoginDetails);
+
   return (
     <div className="p-4 m-4 flex items-center">
       <ul
@@ -30,10 +34,14 @@ const NavItemsComponent = () => {
           <Link to="/contactUs">Contact</Link>
         </li>
         <li className="px-2 hover:underline">Cart</li>
+        {userData?.name && (
+          <li className="px-2 font-semibold">Welcome {userData?.name}</li>
+        )}
         <button
           className="px-2 w-20 h-10 bg-blue-600 rounded-lg text-white cursor-pointer"
           onClick={() => {
             setBtnName(btnName === "Login" ? "Logout" : "Login");
+            setUserData(userData ? null : { name: "Vinay" });
           }}
         >
           {btnName}

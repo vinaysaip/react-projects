@@ -1,15 +1,22 @@
 import RestaurantCard, { enhancedCard } from "./ReataurantCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
 import { restaurantsURL } from "../utils/constants";
+import { userLoginDetails } from "../utils/uesrLoginDetailsContext";
 const SearchBar = ({ searchText, onSearchChange }) => {
   handleSearchChange = (e) => {
     onSearchChange(e.target.value);
     console.log("Search Text:", searchText);
   };
+  const { userData } = useContext(userLoginDetails);
   return (
     <div className="flex flex-col items-center">
+      {userData && (
+        <h1 className="p-3 font-semibold text-2xl">
+          Hey {userData.name}, What is on your mind?
+        </h1>
+      )}
       <h1 className="text-xl p-2 m-2 font-bold">Search Restaurant or place</h1>
       <input
         type="text"
