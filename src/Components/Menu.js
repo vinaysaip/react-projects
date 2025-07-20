@@ -53,9 +53,11 @@ const RestaurantMenu = ({ menuItems }) => {
           <div
             key={category?.card?.card?.title}
             className="py-8 my-4 border border-gray-400 rounded-lg hover:border-2 font-extrabold"
-            onClick={() => handleToggleCategory(category.card.card.title)}
           >
-            <h5 className="px-4 text-xl font-bold flex justify-between items-center">
+            <h5
+              className="px-4 text-xl font-bold flex justify-between items-center cursor-pointer"
+              onClick={() => handleToggleCategory(category.card.card.title)}
+            >
               <div>
                 {category.card?.card?.itemCards ? (
                   <p>
@@ -112,6 +114,12 @@ const RestaurantMenu = ({ menuItems }) => {
                           </p>
                         </div>
                         <div className="h-30 pr-4 w-1/5">
+                          <div className="absolute mt-22 pl-8">
+                            <button className="shadow-lg border-gray-200 rounded-lg text-md text-green-600 bg-white px-5 py-2 m-1">
+                              {" "}
+                              ADD
+                            </button>
+                          </div>
                           <img
                             className="h-full w-40 rounded-lg"
                             src={
