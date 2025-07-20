@@ -10,7 +10,8 @@ import RestaurantDetails from "./Components/RestaurantDetails";
 import useOnlineStatus from "./utils/useOnlineStatus";
 import noInternet from "./utils/images/internet.png";
 import { userLoginDetails } from "./utils/uesrLoginDetailsContext";
-import { useState } from "react";
+import { lazy, useState, Suspense } from "react";
+const AboutUs = lazy(() => import("./Components/AboutUs"));
 
 const AppContainer = () => {
   const onlineStatus = useOnlineStatus();
@@ -37,7 +38,6 @@ const AppContainer = () => {
     </userLoginDetails.Provider>
   );
 };
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -49,7 +49,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/aboutUs",
-        Component: AboutUs,
+        element: (
+          <Suspense>
+            <AboutUs />
+          </Suspense>
+        ),
       },
       {
         path: "/contactUs",
