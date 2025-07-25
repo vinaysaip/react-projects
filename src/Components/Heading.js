@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { companyLogoUrl } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { userLoginDetails } from "../utils/uesrLoginDetailsContext";
+import { useSelector } from "react-redux";
 
 const LogoComponent = () => (
   <Link to={"/"}>
@@ -14,7 +15,8 @@ const LogoComponent = () => (
 const NavItemsComponent = () => {
   const onLineStatus = useOnlineStatus();
   const [btnName, setBtnName] = useState("Login");
-
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
   const { userData, setUserData } = useContext(userLoginDetails);
 
   return (
@@ -33,7 +35,9 @@ const NavItemsComponent = () => {
         <li className="px-2 hover:underline">
           <Link to="/contactUs">Contact</Link>
         </li>
-        <li className="px-2 hover:underline">Cart</li>
+        <li className="px-2 hover:underline">
+          <Link to="/cart">Cart - {cartItems.length}</Link>
+        </li>
         {userData?.name && (
           <li className="px-2 font-semibold">Welcome {userData?.name}</li>
         )}

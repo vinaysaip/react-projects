@@ -1,8 +1,16 @@
+import { useDispatch } from "react-redux";
 import Shimmer from "./Shimmer";
 import { useState, useEffect } from "react";
+import { addToCart } from "../utils/cartSlice";
+import { toast } from "react-toastify";
 
 const RestaurantMenu = ({ menuItems }) => {
   const [categories, setCategories] = useState([]);
+  const dispatch = useDispatch();
+  const handleAddToCart = (item) => {
+    dispatch(addToCart(item));
+    toast.success("Item added Successfully!!");
+  };
   useEffect(() => {
     if (menuItems) {
       const initialCategories = menuItems
@@ -114,20 +122,33 @@ const RestaurantMenu = ({ menuItems }) => {
                           </p>
                         </div>
                         <div className="h-30 pr-4 w-1/5">
-                          <div className="absolute mt-22 pl-8">
-                            <button className="shadow-lg border-gray-200 rounded-lg text-md text-green-600 bg-white px-5 py-2 m-1">
+                          <div
+                            className={
+                              info?.imageId
+                                ? "absolute mt-22 pl-8"
+                                : "absolute mt-11 pl-8"
+                            }
+                          >
+                            <button
+                              onClick={() => {
+                                handleAddToCart(item);
+                              }}
+                              className="shadow-lg border-gray-200 rounded-lg text-md text-green-600 bg-white px-5 py-2 m-1 cursor-pointer"
+                            >
                               {" "}
                               ADD
                             </button>
                           </div>
-                          <img
-                            className="h-full w-40 rounded-lg"
-                            src={
-                              "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" +
-                              info?.imageId
-                            }
-                            alt="menu-item"
-                          />
+                          {info?.imageId && (
+                            <img
+                              className="h-full w-40 rounded-lg"
+                              src={
+                                "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/" +
+                                info?.imageId
+                              }
+                              alt="menu-item"
+                            />
+                          )}
                         </div>
                       </div>
                     );
